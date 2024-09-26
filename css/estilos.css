@@ -38,14 +38,27 @@ a {text-decoration: none;}
         padding: 0.3rem 1rem;
         border-radius: 4px;
     }
- 
 }
  
 .topo {
-    height: 12vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: var(--cor-clara);
+
+    /* Classe .limitador específica para uso d=no cabeçalho/topo: além das configurações gerais (width e margin), AQUI ela também tem altura e ajustes no flex. */
+    .limitador {
+        height: 12vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+/* Classe .limitador de uso geral:
+Sempre terá largura de 95vw e margin auto não importando onde será aplicada. */
+.limitador {
+    width: 95vw; 
+    margin: auto;
 }
  
 .titulo-menu a {
@@ -99,17 +112,24 @@ a {text-decoration: none;}
     align-items: center;
     justify-content: center;
 
-    /* Ou usando 
-    */
-
     h2, p {
         text-align: center;
         color: var(--cor-clara);
+
+        /* Aplicar a animação */
+        animation-name: animaDestaque;
+        animation-duration: 2s;
     }
    
     h2 { font-size: clamp(3rem, 10vw, 7rem); }
  
-    p { font-size: clamp(1.5rem, 3vw, 3rem); }
+    p { 
+        font-size: clamp(1.5rem, 3vw, 3rem);
+        animation-delay: .5s;
+
+        /* Antes da animação: o elemento assume o estilo do primeiro keyframe (ou seja, o from). Portanto assim, forçamos a iniciar com opacity zero e escala menor 30%. */
+        animation-fill-mode: backwards;
+    }
 
     /* Sobre a função clamp ()
     Função útil para redimensionamento responsivo de acordo com critérios de tamanhos mínimo, ideal/variável/responsivo e máximo. Uso mais comum é para textos responsivos, mas pode ser usada com qualquer propriedade que envolva tamanho (width, height etc)
@@ -121,3 +141,75 @@ a {text-decoration: none;}
     )
     */
 }
+
+/* 1) Criar a animação */
+@keyframes animaDestaque {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+article {
+    h2 {
+        padding: 1rem;
+        font-size: 1.4rem;
+        font-family: Raleway, sans-serif;
+        color: var(--cor-titulo);
+    }
+
+    p {
+        padding: .5rem 0;
+        font-size: 1.2rem;
+    }
+
+    address {
+        font-style: normal;
+        font-size: 1.2rem;
+    }
+
+} 
+
+.front-end, .historia, .localizacao {
+    text-align: center;
+}
+
+.historia {
+    background-image: url(/imagens/fundo-madeira.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    
+    h2 {
+        color: var(--cor-clara);
+        text-shadow: 2px 2px 5px var(--cor-escura);
+    }
+
+    iframe {
+        width: 100%;  
+        max-width: 700px;      
+        margin-bottom: 2rem;
+    }
+}
+
+.localizacao iframe {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.rodape {
+    background-color: var(--cor-escura);
+    color: var(--cor-clara);
+    height: 30vh; 
+    font-weight: bold; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+}
+
+
+
