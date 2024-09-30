@@ -41,11 +41,12 @@ a {text-decoration: none;}
 }
  
 .topo {
+    z-index: 1;
     position: sticky;
     top: 0;
     background-color: var(--cor-clara);
 
-    /* Classe .limitador específica para uso d=no cabeçalho/topo: além das configurações gerais (width e margin), AQUI ela também tem altura e ajustes no flex. */
+    /* Classe .limitador específica para uso no cabeçalho/topo: além das configurações gerais (width e margin), AQUI ela também tem altura e ajustes no flex. */
     .limitador {
         height: 12vh;
         display: flex;
@@ -211,5 +212,93 @@ article {
     text-align: center;
 }
 
+.conteudo-interno {
+    background-color: var(--cor-intermediaria);
+    padding: .5rem;
+    border-radius: 8px;
+ 
+    h2 {
+        padding-left: 0;
+        font-size: 1.8rem;
+    }
+}
+ 
+table {
+    border-collapse: collapse;
+    border: black solid 4px;
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+   
+    caption {
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        padding-bottom: .3rem;
+    }
+ 
+    th {
+        background-color: var(--cor-escura);
+        color: var(--cor-clara);
+    }
+ 
+    th, td {
+        border: black 1px solid;
+        padding: 8px;
+       
+    }
+ 
+    td:nth-child(2) {text-align: center;}
+ 
+    td:last-child, th:last-child {text-align: right;}
+ 
+    tr:nth-child(odd) {
+        background-color: var(--cor-intermediaria) ;
+    }
+ 
+    tr:nth-child(even) {
+        background-color: var(--cor-clara) ;
+    }
+}
+ 
+.galeria {
+   
+ 
+    img {
+       
+        margin: 1.5rem;
+        border-radius: 50%;
+        box-shadow: black 0 0px 30px  ;
+ 
+ 
+        transform: scale(0.8) rotate(-10deg);
+        transition: transform 0.3s;
+ 
+        &:hover {
+            transform: scale(1) rotate(0);
+        }
+       
+    }
+}
 
+/* Media Queries: regras de uso condicional de acordo com o tamanho de tela necessário para ajustes no site. */
 
+@media screen and (min-width: 600px) {
+    /* Escondendo a palavras "menu" */
+    .titulo-menu { display: none; }
+
+    /* Exibimos os links (lista de links) do menu */
+    .links-menu {
+        display: flex;
+
+        /* Forçamos casa item da lista a ter largura total e, com isso, redistribuir os espaços/alinhamentos. */
+        li { width: 100%; }
+    }
+
+    /* Ajustamos  */
+    .menu { width: 60%; }
+}
+
+@media screen and (min-width: 1000px) {
+    html { font-size: 18px; }
+    .limitador { max-width: 1000px; }
+}
